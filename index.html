@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shubham Jana | B.Tech CS Portfolio</title>
+    <!-- Load Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
+    <!-- Use Inter font family --><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <!-- Load Lucide Icons for professional look --><script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Custom styles for the portfolio (dark mode focus) */
+        :root {
+            font-family: 'Inter', sans-serif;
+        }
+        body {
+            /* NEW: Subtle radial gradient for depth */
+            background-color: #111827;
+            background-image: radial-gradient(ellipse at center, #1f2937 0%, #111827 70%);
+            color: #f3f4f6; /* Light text */
+        }
+        /* Custom code block styling */
+        .code-block {
+            background-color: #1f2937;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-family: monospace;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+        .code-keyword { color: #60a5fa; }
+        .code-string { color: #facc15; }
+        .code-comment { color: #6b7280; }
+        .code-function { color: #10b981; }
+        .code-variable { color: #f87171; }
+        
+        /* Smooth transitions for tabs and hover effects */
+        .tab-button {
+            transition: all 0.3s ease;
+        }
+        /* Base state for tab content and skill pills */
+        .tab-content, .skill-pill {
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 1. Header Load Animation Keyframes */
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 2. Global Interactive Card Hover Effect */
+        .interactive-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth spring-like transition */
+        }
+        .interactive-card:hover {
+            transform: translateY(-5px) scale(1.01); /* Lift up slightly */
+            box-shadow: 0 10px 20px -3px rgba(99, 102, 241, 0.3), 0 4px 6px -2px rgba(99, 102, 241, 0.1); /* Indigo shadow glow */
+            border-color: #6366f1; /* Stronger border color on hover */
+        }
+
+        /* 3. Avatar Glow Effect */
+        .initials-avatar {
+            /* Apply indigo shadow for the profile photo glow */
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.4); 
+        }
+
+        /* 4. Text Glow Hover Effect */
+        .text-glow-hover {
+            transition: all 0.3s ease-in-out;
+        }
+        .text-glow-hover:hover {
+            text-shadow: 0 0 5px rgba(99, 102, 241, 0.7), 0 0 10px rgba(99, 102, 241, 0.3);
+            color: #e0e7ff; 
+            cursor: default; /* Use default cursor for text */
+        }
+        /* Specific override for the main heading for a stronger effect */
+        .main-title-glow:hover {
+            text-shadow: 0 0 10px #6366f1, 0 0 20px rgba(99, 102, 241, 0.5);
+        }
+
+        /* 5. NEW: Staggered animation for skill pills */
+        #tab-skills .skill-pill {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <div class="max-w-4xl mx-auto px-4 py-8 md:py-12">
+        <!-- HEADER / HERO & ABOUT SECTION (MERGED) -->
+        <header class="text-center mb-12">
+            
+            <!-- START: PROFILE PHOTO INTEGRATION (Size updated to h-40 w-40) -->
+            <img src="profile_photo.png" alt="Shubham Jana Professional Headshot" 
+                 class="h-40 w-40 rounded-full mx-auto mb-4 object-cover initials-avatar ring-4 ring-indigo-500/50" 
+                 style="animation: slideDown 0.8s ease-out 0.2s forwards; opacity: 0;">
+            <!-- END: PROFILE PHOTO INTEGRATION -->
+            
+            <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl text-white main-title-glow" 
+                style="animation: slideDown 0.8s ease-out 0.4s forwards; opacity: 0;">Shubham Jana</h1>
+            
+            <p class="mt-3 text-xl font-medium text-indigo-400 text-glow-hover" 
+               style="animation: slideDown 0.8s ease-out 0.6s forwards; opacity: 0;">B.Tech Computer Science Student | Full-Stack & Zero-Server Specialist</p>
+            
+            <!-- ABOUT ME TEXT (MOVED HERE) -->
+            <div class="mt-8 text-gray-300 space-y-4 max-w-3xl mx-auto" style="animation: slideDown 0.8s ease-out 0.8s forwards; opacity: 0;">
+                <p class="text-glow-hover">
+                    My core focus revolves around practical, efficient, and modern web development. I specialize in solutions that prioritize <strong class="text-white hover:text-indigo-400">Zero-Server Architectures</strong> and <strong class="text-white hover:text-indigo-400">Client-Side Storage</strong>.
+                </p>
+                <p class="text-glow-hover">
+                    Passionate about building <strong class="text-white hover:text-indigo-400">Privacy-First Web Apps</strong> using JavaScript, Tailwind CSS, and other modern tools.
+                </p>
+            </div>
+        </header>
+
+        <!-- NAVIGATION / TABS (UPDATED) -->
+        <nav class="sticky top-0 z-10 bg-[#111827] border-b border-gray-700 shadow-xl mb-8 -mx-4 px-4 sm:mx-0 sm:px-0">
+            <div class="flex justify-center space-x-2 md:space-x-4 p-2">
+                <button onclick="switchTab('projects')" class="tab-button px-4 py-2 text-sm md:text-base font-semibold rounded-full bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg" data-tab="projects">
+                    <i data-lucide="code-square" class="inline-block h-4 w-4 mr-1"></i> Projects
+                </button>
+                <button onclick="switchTab('skills')" class="tab-button px-4 py-2 text-sm md:text-base font-semibold rounded-full bg-gray-700 hover:bg-indigo-500 hover:text-white text-gray-300" data-tab="skills">
+                    <i data-lucide="sparkles" class="inline-block h-4 w-4 mr-1"></i> Skills
+                </button>
+                <button onclick="switchTab('resume')" class="tab-button px-4 py-2 text-sm md:text-base font-semibold rounded-full bg-gray-700 hover:bg-indigo-500 hover:text-white text-gray-300" data-tab="resume">
+                    <i data-lucide="file-text" class="inline-block h-4 w-4 mr-1"></i> Resume
+                </button>
+                <button onclick="switchTab('contact')" class="tab-button px-4 py-2 text-sm md:text-base font-semibold rounded-full bg-gray-700 hover:bg-indigo-500 hover:text-white text-gray-300" data-tab="contact">
+                    <i data-lucide="mail" class="inline-block h-4 w-4 mr-1"></i> Get in Touch
+                </button>
+            </div>
+        </nav>
+
+        <!-- CONTENT SECTIONS -->
+        <main id="content-container">
+
+            <!-- 1. ABOUT SECTION (Now empty, content is in header) -->
+            <section id="tab-about" class="tab-content hidden"></section>
+
+            <!-- 2. PROJECTS SECTION (Formerly "Work") -->
+            <section id="tab-projects" class="tab-content">
+                <h2 class="text-3xl font-bold mb-6 border-b border-indigo-500 pb-2 text-glow-hover">Selected Projects</h2>
+                <div class="space-y-8">
+                    <!-- Project 1: Zero-Server Todo App -->
+                    <div class="p-6 bg-gray-800 rounded-xl shadow-2xl border border-gray-700 interactive-card">
+                        <h3 class="text-2xl font-bold text-indigo-400 mb-3 flex items-center text-glow-hover"><i data-lucide="list-checks" class="h-5 w-5 mr-2"></i> Zero-Server Todo Manager</h3>
+                        <p class="text-gray-400 mb-4 text-glow-hover">A complete full-stack-like application built entirely on the client-side using IndexedDB for persistent storage. Demonstrates Zero-Server Architecture principles.</p>
+                        <a href="#link_to_project_1" target="_blank" class="text-sm inline-flex items-center text-yellow-400 hover:text-yellow-300 transition-colors text-glow-hover">
+                            <i data-lucide="external-link" class="h-4 w-4 mr-1"></i> Project Link (Placeholder)
+                        </a>
+                        <div class="mt-4">
+                            <h4 class="text-lg font-semibold mb-2 text-white text-glow-hover">Core Logic Snippet (Data Handling)</h4>
+                            <pre class="code-block">
+<span class="code-comment">// Function to save a new task to IndexedDB (Client-Side Storage)</span>
+<span class="code-function">const</span> <span class="code-variable">saveTask</span> = (<span class="code-variable">taskData</span>) => {
+<span class="code-variable">const</span> <span class="code-variable">db</span> = <span class="code-function">getDB</span>(); <span class="code-comment">// Initialize IndexedDB connection</span>
+<span class="code-variable">const</span> <span class="code-variable">transaction</span> = <span class="code-variable">db</span>.<span class="code-function">transaction</span>([<span class="code-string">'tasks'</span>], <span class="code-string">'readwrite'</span>);
+<span class="code-variable">const</span> <span class="code-variable">store</span> = <span class="code-variable">transaction</span>.<span class="code-variable">objectStore</span>(<span class="code-string">'tasks'</span>);
+<span class="code-variable">const</span> <span class="code-variable">request</span> = <span class="code-variable">store</span>.<span class="code-function">add</span>(<span class="code-variable">taskData</span>);
+<span class="code-variable">request</span>.<span class="code-variable">onsuccess</span> = () => { <span class="code-keyword">console</span>.<span class="code-function">log</span>(<span class="code-string">"Task saved."</span>); };
+};
+                            </pre>
+                        </div>
+                    </div>
+                    <!-- Project 2: Tailwind Responsive Layout -->
+                    <div class="p-6 bg-gray-800 rounded-xl shadow-2xl border border-gray-700 interactive-card">
+                        <h3 class="text-2xl font-bold text-indigo-400 mb-3 flex items-center text-glow-hover"><i data-lucide="layout-grid" class="h-5 w-5 mr-2"></i> Modern Responsive Dashboard UI</h3>
+                        <p class="text-gray-400 mb-4 text-glow-hover">Focus on complex, responsive layout design using pure Tailwind CSS for multiple breakpoints (mobile, tablet, desktop).</p>
+                        <a href="#link_to_project_2" target="_blank" class="text-sm inline-flex items-center text-yellow-400 hover:text-yellow-300 transition-colors text-glow-hover">
+                            <i data-lucide="external-link" class="h-4 w-4 mr-1"></i> Project Link (Placeholder)
+                        </a>
+                        <div class="mt-4">
+                            <h4 class="text-lg font-semibold mb-2 text-white text-glow-hover">Core Snippet (Tailwind Grid/Flex)</h4>
+                            <pre class="code-block">
+<span class="code-comment">&lt;!-- Responsive Layout using Tailwind CSS --&gt;</span>
+&lt;<span class="code-keyword">div</span> <span class="code-variable">class</span>=<span class="code-string">"grid grid-cols-1 gap-6 lg:grid-cols-3"</span>&gt;
+&lt;<span class="code-keyword">div</span> <span class="code-variable">class</span>=<span class="code-string">"lg:col-span-2 p-4 bg-white rounded-lg shadow"</span>&gt;
+    &lt;<span class="code-keyword">h2</span> <span class="code-variable">class</span>=<span class="code-string">"text-xl font-bold"</span>&gt;Dashboard Analytics&lt;/<span class="code-keyword">h2</span>&gt;
+&lt;/<span class="code-keyword">div</span>&gt;
+&lt;<span class="code-keyword">div</span> <span class="code-variable">class</span>=<span class="code-string">"lg:col-span-1 p-4 bg-gray-100 rounded-lg"</span>&gt;
+    &lt;<span class="code-keyword">h3</span> <span class="code-variable">class</span>=<span class="code-string">"text-lg font-semibold"</span>&gt;Quick Links&lt;/<span class="code-keyword">h3</span>&gt;
+&lt;/<span class="code-keyword">div</span>&gt;
+&lt;/<span class="code-keyword">div</span>&gt;
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 3. NEW SKILLS SECTION -->
+            <section id="tab-skills" class="tab-content hidden">
+                <h2 class="text-3xl font-bold mb-6 border-b border-indigo-500 pb-2 text-glow-hover">Core Technologies</h2>
+                <div class="flex flex-wrap gap-4">
+                    <!-- Staggered animation is added via inline style -->
+                    <div class="skill-pill interactive-card flex items-center gap-2 bg-gray-800 text-indigo-300 font-medium py-2 px-4 rounded-full border border-gray-700" style="animation-delay: 0.1s;">
+                        <i data-lucide="code-2" class="h-5 w-5"></i> JavaScript (ES6+)
+                    </div>
+                    <div class="skill-pill interactive-card flex items-center gap-2 bg-gray-800 text-blue-300 font-medium py-2 px-4 rounded-full border border-gray-700" style="animation-delay: 0.2s;">
+                        <i data-lucide="database" class="h-5 w-5"></i> Client-Side Storage (IndexedDB)
+                    </div>
+                    <div class="skill-pill interactive-card flex items-center gap-2 bg-gray-800 text-cyan-300 font-medium py-2 px-4 rounded-full border border-gray-700" style="animation-delay: 0.3s;">
+                        <i data-lucide="wind" class="h-5 w-5"></i> Tailwind CSS
+                    </div>
+                    <div class="skill-pill interactive-card flex items-center gap-2 bg-gray-800 text-green-300 font-medium py-2 px-4 rounded-full border border-gray-700" style="animation-delay: 0.4s;">
+                        <i data-lucide="server" class="h-5 w-5"></i> Zero-Server Architecture
+                    </div>
+                    <div class="skill-pill interactive-card flex items-center gap-2 bg-gray-800 text-cyan-300 font-medium py-2 px-4 rounded-full border border-gray-700" style="animation-delay: 0.5s;">
+                        <i data-lucide="atom" class="h-5 w-5"></i> React.js
+                    </div>
+                     <div class="skill-pill interactive-card flex items-center gap-2 bg-gray-800 text-green-300 font-medium py-2 px-4 rounded-full border border-gray-700" style="animation-delay: 0.6s;">
+                        <i data-lucide="database-zap" class="h-5 w-5"></i> Node.js
+                    </div>
+                    <div class="skill-pill interactive-card flex items-center gap-2 bg-gray-800 text-gray-300 font-medium py-2 px-4 rounded-full border border-gray-700" style="animation-delay: 0.7s;">
+                        <i data-lucide="git-branch" class="h-5 w-5"></i> Git & GitHub
+                    </div>
+                    <div class="skill-pill interactive-card flex items-center gap-2 bg-gray-800 text-red-300 font-medium py-2 px-4 rounded-full border border-gray-700" style="animation-delay: 0.8s;">
+                        <i data-lucide="shield-check" class="h-5 w-5"></i> Privacy-First Development
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. RESUME SECTION -->
+            <section id="tab-resume" class="tab-content hidden">
+                <h2 class="text-3xl font-bold mb-6 border-b border-indigo-500 pb-2 text-glow-hover">My Resume / CV</h2>
+                <div class="p-6 bg-gray-800 rounded-xl shadow-2xl border border-gray-700 text-center space-y-4 interactive-card">
+                    <i data-lucide="download" class="w-12 h-12 text-indigo-400 mx-auto"></i>
+                    <p class="text-xl font-semibold text-white text-glow-hover">View or Download My Detailed CV</p>
+                    <p class="text-gray-400 text-glow-hover">
+                        This section is dedicated to my detailed resume outlining my academic history, projects, skills, and professional experience.
+                    </p>
+                    <!-- NOTE: Replace the '#' with the actual link to your PDF or Google Doc/Drive Link -->
+                    <a href="#" target="_blank" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 transition duration-150 ease-in-out transform hover:scale-105">
+                        <i data-lucide="file-text" class="h-5 w-5 mr-2"></i> Download CV (PDF)
+                    </a>
+                </div>
+            </section>
+
+            <!-- 5. CONTACT SECTION -->
+            <section id="tab-contact" class="tab-content hidden">
+                <h2 class="text-3xl font-bold mb-6 border-b border-indigo-500 pb-2 text-glow-hover">Get in Touch</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Email Card -->
+                    <div class="p-6 bg-gray-800 rounded-xl shadow-2xl border border-gray-700 interactive-card">
+                        <i data-lucide="mail" class="w-8 h-8 text-indigo-400 mb-3"></i>
+                        <h3 class="text-xl font-semibold text-white mb-2 text-glow-hover">Email</h3>
+                        <p class="text-gray-400 mb-4 text-glow-hover">The best way to reach me for professional inquiries.</p>
+                        <a href="mailto:devshubhamjana@gmail.com" class="text-yellow-400 hover:underline font-medium break-all text-glow-hover">
+                            devshubhamjana@gmail.com
+                        </a>
+                    </div>
+                    <!-- LinkedIn Card -->
+                    <div class="p-6 bg-gray-800 rounded-xl shadow-2xl border border-gray-700 interactive-card">
+                        <i data-lucide="linkedin" class="w-8 h-8 text-indigo-400 mb-3"></i>
+                        <h3 class="text-xl font-semibold text-white mb-2 text-glow-hover">LinkedIn Profile</h3>
+                        <p class="text-gray-400 mb-4 text-glow-hover">Connect and follow my professional journey.</p>
+                        <a href="https://linkedin.com/in/shubham-jana-3b650628a" target="_blank" class="text-yellow-400 hover:underline font-medium break-all text-glow-hover">
+                            linkedin.com/in/shubham-jana-3b650628a
+                        </a>
+                    </div>
+                    <!-- GitHub Card (Full Width) -->
+                    <div class="md:col-span-2 p-6 bg-gray-800 rounded-xl shadow-2xl border border-gray-700 interactive-card">
+                        <i data-lucide="github" class="w-8 h-8 text-indigo-400 mb-3"></i>
+                        <h3 class="text-xl font-semibold text-white mb-2 text-glow-hover">GitHub Account</h3>
+                        <p class="text-gray-400 mb-4 text-glow-hover">Explore my repositories and open-source contributions.</p>
+                        <a href="https://github.com/Shubhamjana32" target="_blank" class="text-yellow-400 hover:underline font-medium break-all text-glow-hover">
+                            https://github.com/Shubhamjana32
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- JavaScript for Tab Switching -->
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Function to switch content tabs
+        function switchTab(tabId) {
+            // 1. Hide all content sections
+            document.querySelectorAll('.tab-content').forEach(section => {
+                section.classList.add('hidden');
+            });
+
+            // 2. Deactivate all buttons
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('bg-indigo-600', 'text-white', 'hover:bg-indigo-700');
+                button.classList.add('bg-gray-700', 'text-gray-300', 'hover:bg-indigo-500', 'hover:text-white');
+            });
+
+            // 3. Show the requested section
+            const activeSection = document.getElementById(`tab-${tabId}`);
+            if (activeSection) {
+                activeSection.classList.remove('hidden');
+            }
+
+            // 4. Activate the corresponding button
+            const activeButton = document.querySelector(`.tab-button[data-tab="${tabId}"]`);
+            if (activeButton) {
+                activeButton.classList.add('bg-indigo-600', 'text-white', 'hover:bg-indigo-700');
+                activeButton.classList.remove('bg-gray-700', 'text-gray-300', 'hover:bg-indigo-500', 'hover:text-white');
+            }
+        }
+
+        // Set 'projects' as the default tab on load
+        window.onload = () => {
+            switchTab('projects');
+        };
+    </script>
+</body>
+</html>
