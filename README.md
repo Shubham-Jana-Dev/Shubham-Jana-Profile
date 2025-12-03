@@ -10,7 +10,7 @@ My unique focus involves creating solutions that utilize **Client-Side Storage (
 
 ## 🌐 Live Portfolio
 
-[**\[Link to your GitHub Pages URL\]**](https://shubhamjana32.github.io/Universal-billing-platform/)
+[**Live Portfolio**](https://shubham-jana-dev.github.io/Shubham-Jana-Profile/)
 
 ---
 
